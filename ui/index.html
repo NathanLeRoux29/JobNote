@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobNote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="booting">
+    <aside id="sidebar">
+      <label class="search">
+        <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4.2-4.2"/></svg>
+        <input id="search" type="text" placeholder="Rechercher" autocomplete="off" spellcheck="false">
+        <kbd>Ctrl K</kbd>
+      </label>
+
+      <div class="side-head">
+        <span>Tâches</span>
+        <button id="addTask" class="icon-btn" title="Nouvelle tâche (Ctrl+N)"></button>
+      </div>
+
+      <div class="side-scroll">
+        <div id="taskList" class="task-list"></div>
+        <div id="doneSection" hidden>
+          <button id="doneToggle" class="done-toggle">
+            <span class="chev"></span><span>Terminées</span><span id="doneCount" class="pill"></span>
+          </button>
+          <div id="doneList" class="task-list"></div>
+        </div>
+      </div>
+
+      <div class="side-foot">
+        <span id="saveStatus" class="save-status"><i></i><span>Enregistré</span></span>
+        <span class="spacer"></span>
+        <button id="aiSettingsBtn" class="icon-btn" title="Configuration de l'IA"></button>
+        <button id="themeBtn" class="icon-btn" title="Thème"></button>
+        <button id="helpBtn" class="icon-btn" title="Raccourcis clavier (F1)"></button>
+      </div>
+    </aside>
+
+    <main id="main" class="sheet"></main>
+    <div id="splitter" title="Glisser pour redimensionner"></div>
+
+    <section id="notes" class="sheet">
+      <div class="notes-head">
+        <span class="notes-dot"></span>
+        <div id="notesTitle" class="notes-crumb"></div>
+        <span class="spacer"></span>
+        <button id="notesSwitch" class="notes-switch" title="Choisir la note à afficher"></button>
+        <button id="notesFocusBtn" class="icon-btn" title="Mode concentration (Ctrl+Maj+E)"></button>
+        <button id="notesCloseBtn" class="icon-btn" title="Fermer les notes (Ctrl+E)"></button>
+      </div>
+      <div id="toolbar" class="toolbar">
+        <button data-cmd="h1" title="Titre 1 (# espace)">H1</button>
+        <button data-cmd="h2" title="Titre 2 (## espace)">H2</button>
+        <span class="sep"></span>
+        <button data-cmd="bold" title="Gras (Ctrl+B)"><b>B</b></button>
+        <button data-cmd="italic" title="Italique (Ctrl+I)"><i>I</i></button>
+        <button data-cmd="strikeThrough" title="Barré"><s>S</s></button>
+        <span class="sep"></span>
+        <button data-cmd="ul" title="Liste (- espace)" class="ico"></button>
+        <button data-cmd="ol" title="Liste numérotée (1. espace)" class="ico"></button>
+        <button data-cmd="quote" title="Citation (&gt; espace)" class="ico"></button>
+        <button data-cmd="code" title="Bloc de code" class="ico"></button>
+      </div>
+      <div class="notes-scroll">
+        <div id="notesEditor" class="prose" contenteditable="true" spellcheck="true"
+             data-placeholder="Écris tes notes ici…  # titre, - liste, > citation"></div>
+      </div>
+      <div class="notes-foot"><span id="wordCount"></span></div>
+      <div id="aiDock" class="ai-dock">
+        <div id="aiResizer" class="ai-resizer" title="Glisser pour redimensionner · double-clic pour réinitialiser"></div>
+        <div id="aiExpanded" class="ai-expanded" hidden>
+          <div class="ai-bar-head">
+            <span class="ai-spark"></span>
+            <span class="ai-title">Discussion avec l’IA</span>
+            <span class="spacer"></span>
+            <button id="aiFolders" class="ai-prov" title="Dossiers que l’IA peut consulter (lecture seule)"></button>
+            <button id="aiProvider" class="ai-prov" title="Configuration de l’IA"></button>
+            <button id="aiNewChat" class="icon-btn" title="Nouvelle discussion (efface la mémoire de cette tâche)"></button>
+            <button id="aiCollapse" class="icon-btn" title="Réduire (Échap)"></button>
+          </div>
+          <div id="aiThread" class="ai-thread"></div>
+          <div id="aiChips" class="ai-chips"></div>
+        </div>
+        <div id="aiAttached" class="ai-attached" hidden></div>
+        <form id="aiForm" class="ai-composer">
+          <span class="ai-spark small"></span>
+          <button type="button" id="aiAttach" class="ai-attach" title="Joindre des fichiers (l’IA pourra les lire)"></button>
+          <button type="button" id="aiScope" class="ai-scope" hidden></button>
+          <textarea id="aiPrompt" rows="1" spellcheck="true"
+            placeholder="Demander à l’IA…"></textarea>
+          <button id="aiSend" type="submit" class="ai-send" title="Envoyer (Entrée)"></button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div id="menu" class="menu" hidden></div>
+  <div id="toasts"></div>
+  <div id="modal" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

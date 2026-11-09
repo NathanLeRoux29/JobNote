@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Dépendances installées par install.sh (pip --target)
+vendor/
+
+# Éditeurs / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
